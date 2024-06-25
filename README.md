@@ -39,5 +39,22 @@ npm i @adonisjs/auth@8.2.3
 node ace configure @adonisjs/auth
 ```
 
+## Autorisation
+```bash
+npm i @adonisjs/bouncer@2.3.0
+```
+
+### Configuration
+```bash
+node ace configure @adonisjs/bouncer
+```
+
+### Creating a policy file
+```bash
+node ace make:policy Book
+```
+Suivre les étapes en choisissant le model en occurrence (Book) et le mode de police (User) puis les actions
+
+
 
 - [Lien](https://www.youtube.com/watch?v=d6QCTRO3f_0&list=PL_fWONAepR_ACdcHV91zbcxNR9DVFoNy7&index=1) YouTube

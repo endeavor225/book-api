@@ -38,9 +38,12 @@ export default class BookController {
 
   public async edit({}: HttpContextContract) {}
 
-  public async update({request, response}: HttpContextContract) {
+  public async update({bouncer, request, response}: HttpContextContract) {
     const payload = await request.validate(UpdateBookValidator)
     const book = await Book.findOrFail(request.params().id)
+
+    // authorize
+    await bouncer.with('BookPolicy').authorize('delete', book)
 
     let fileName: any
     if (payload.cover) {
@@ -60,8 +63,11 @@ export default class BookController {
     return response.status(200).json("Book updated !!")
   }
 
-  public async destroy({request, response}: HttpContextContract) {
+  public async destroy({bouncer, request, response}: HttpContextContract) {
     const book = await Book.findOrFail(request.params().id)
+     // authorize
+    await bouncer.with('BookPolicy').authorize('delete', book)
+
     await Drive.delete(book.cover)
     await book.related('categories').detach()
     await book.delete()
