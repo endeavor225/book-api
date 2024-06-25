@@ -18,6 +18,9 @@ node ace configure @adonisjs/luci
 ### Valider les variables d'environnement
 ```bash
 export default Env.rules({
+  #Ajouter
+  DB_CONNECTION: Env.schema.string(),
+
   PG_HOST: Env.schema.string({ format: 'host' }),
   PG_PORT: Env.schema.number(),
   PG_USER: Env.schema.string(),
@@ -35,3 +38,6 @@ npm i @adonisjs/auth@8.2.3
 ```bash
 node ace configure @adonisjs/auth
 ```
+
+
+- [Lien](https://www.youtube.com/watch?v=d6QCTRO3f_0&list=PL_fWONAepR_ACdcHV91zbcxNR9DVFoNy7&index=1) YouTube

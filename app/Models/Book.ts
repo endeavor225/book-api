@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, ManyToMany, belongsTo, column, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, ManyToMany, belongsTo, column, computed, manyToMany, } from '@ioc:Adonis/Lucid/Orm'
 import User from 'App/Models/User';
 import Category from 'App/Models/Category';
 
@@ -14,6 +14,11 @@ export default class Book extends BaseModel {
 
   @column()
   public cover: string
+
+  @computed()
+  public get coverPath() {
+    return `/uploads/${this.cover}`
+  }
 
   @column()
   public author: string
