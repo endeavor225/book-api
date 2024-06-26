@@ -5,7 +5,8 @@ Apprenez à créer une API REST avec authentification complète, de la connexion
 
 🚀💡 Nous plongerons également dans la configuration de la base de données SQLite pour une expérience sans souci
 
-## Installation de l'ORM lucid
+## ORM lucid
+### Installation
 ```bash
 npm i @adonisjs/lucid@18.4.0
 ```
@@ -30,6 +31,7 @@ export default Env.rules({
 ```
 
 ## Authentification
+### Installation
 ```bash
 npm i @adonisjs/auth@8.2.3
 ```
@@ -40,6 +42,7 @@ node ace configure @adonisjs/auth
 ```
 
 ## Autorisation
+### Installation
 ```bash
 npm i @adonisjs/bouncer@2.3.0
 ```
@@ -55,6 +58,55 @@ node ace make:policy Book
 ```
 Suivre les étapes en choisissant le model en occurrence (Book) et le mode de police (User) puis les actions
 
+## Mailer
+### Installation
+```bash
+npm i @adonisjs/mail@8.2.1
+```
 
+### Configuration
+```bash
+node ace configure @adonisjs/mail
+```
+
+#### Variables for the SMTP driver
+```bash
+  SMTP_HOST: Env.schema.string({ format: 'host' }),
+  SMTP_PORT: Env.schema.number(),
+  SMTP_USERNAME: Env.schema.string(),
+  SMTP_PASSWORD: Env.schema.string(),
+```
+Copier et coller dans env.ts
+
+J'ai utilisé [MailHog](https://github.com/mailhog/MailHog) comme serveur de mail d'où le port 1025 (SMTP_PORT = 1025) dans .env
+### MailHog
+#### Installation sur mac
+
+```bash
+brew update && brew install mailhog
+```
+
+#### Démarrer
+```bash
+mailhog
+```
+
+### Views & Templates
+Pour ajouter un moteur de template
+
+#### Installation 
+```bash
+npm i @adonisjs/view
+```
+
+#### Configuration 
+```bash
+node ace configure @adonisjs/view
+```
+
+#### Creation de vue 
+```bash
+node ace make:view emails/create
+```
 
 - [Lien](https://www.youtube.com/watch?v=d6QCTRO3f_0&list=PL_fWONAepR_ACdcHV91zbcxNR9DVFoNy7&index=1) YouTube

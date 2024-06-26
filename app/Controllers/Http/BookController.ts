@@ -3,6 +3,8 @@ import Book from 'App/Models/Book'
 import StoreBookValidator from 'App/Validators/StoreBookValidator'
 import UpdateBookValidator from 'App/Validators/UpdateBookValidator';
 import Drive from '@ioc:Adonis/Core/Drive'
+import Mail from '@ioc:Adonis/Addons/Mail'
+import Application from '@ioc:Adonis/Core/Application';
 
 export default class BookController {
   public async index({}: HttpContextContract) {
@@ -29,6 +31,18 @@ export default class BookController {
     })
 
     await book.related('categories').attach(payload.categories)
+
+    // Recuperation des catégories
+    await book.load('categories')
+
+    await Mail.send((message) => {
+      message
+        .from('bookapi@exemple.com')
+        .to(auth.user!.email)
+        .subject("Thank for adding a new book to our API!")
+        .attach(Application.tmpPath(book.coverPath))
+        .htmlView("emails/create", {book})
+    })
     return response.status(201).json("Book created")
   }
 
